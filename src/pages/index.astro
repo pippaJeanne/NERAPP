@@ -122,18 +122,7 @@ function readfile(file){
         }
    
 console.log(txtdata)
-const spacy = require('spacy');
 
-(async function() {
-    const nlp = spacy.load('xx_ent_wiki_sm');
-    const doc = await nlp(txtdata);
-    for (let ent of doc.ents) {
-        console.log(ent.text, ent.label);
-    }
-   /* for (let token of doc) {
-        console.log(token.text, token.pos, token.head.text);
-    }*/
-})();
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
       /*  const a = document.createElement('a');
         const outfile = new Blob([text], { type: 'text/xml' });
@@ -147,9 +136,8 @@ const spacy = require('spacy');
     };
     read.readAsText(file.files[0])
 } 
-
-
  
  </script>
+ <script src="./form"></script>
 	</body>
 </html>

@@ -69,4 +69,3 @@ const spacy = require('spacy');
     read.readAsText(file.files[0])
 } 
 */
-
