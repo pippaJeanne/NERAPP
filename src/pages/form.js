@@ -40,10 +40,10 @@ function readfile(file){
 //console.log(txtdata)
 */
 
-const spacy = require('spacy');
+import { load } from 'spacy';
 
 (async function() {
-    const nlp = spacy.load('xx_ent_wiki_sm');
+    const nlp = load('xx_ent_wiki_sm');
     const doc = await nlp(txtdata);
     for (let ent of doc.ents) {
         console.log(ent.text, ent.label);
