@@ -2,7 +2,8 @@
 //form.addEventListener('submit', handleSubmit)
 
 //const spacyNLP = require("spacy-nlp");
-var txtdata = "";
+if (txtdata !== "") {console.log(txtdata)}
+/*var txtdata = "";
 const btn = document.querySelector('button');
 btn.addEventListener('click', handleSubmit);
 
@@ -38,8 +39,8 @@ function readfile(file){
            
         }
 //console.log(txtdata)
-
-//const spacy = require('spacy');
+*/
+/*
 const spacy = require('spacy');
 
 (async function() {
@@ -51,11 +52,11 @@ const spacy = require('spacy');
    /* for (let token of doc) {
         console.log(token.text, token.pos, token.head.text);
     }*/
-})();
+// })();
 
      
         
-
+/*
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
       /*  const a = document.createElement('a');
         const outfile = new Blob([text], { type: 'text/xml' });
@@ -64,9 +65,9 @@ const spacy = require('spacy');
         a.download = `ner_${file.files[0].name}`;
         a.click();
         URL.revokeObjectURL(a.href);
-        */
+        */ /*
     };
     read.readAsText(file.files[0])
 } 
-
+*/
 
