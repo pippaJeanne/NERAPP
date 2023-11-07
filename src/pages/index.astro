@@ -82,9 +82,9 @@
         </div>
     </div> 
 
-	<script src="./main.js">
+	<script type="text/javascript">
 //import { notDeepEqual } from "assert";
-/*
+
 var txtdata = "";
 const btn = document.querySelector('button');
 btn.addEventListener('click', handleSubmit);
@@ -120,12 +120,20 @@ function readfile(file){
             txtdata += txtcont + " ";
            
         }
-      const docx = nlp(txtdata)
-		// Entity Recognition NER
+   
+console.log(txtdata)
+const spacy = require('spacy');
 
-		console.log(docx.topics().terms().out('tags'));
-    console.log(docx.topics().text());
-
+(async function() {
+    const nlp = spacy.load('xx_ent_wiki_sm');
+    const doc = await nlp(txtdata);
+    for (let ent of doc.ents) {
+        console.log(ent.text, ent.label);
+    }
+   /* for (let token of doc) {
+        console.log(token.text, token.pos, token.head.text);
+    }*/
+})();
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
       /*  const a = document.createElement('a');
         const outfile = new Blob([text], { type: 'text/xml' });
@@ -135,12 +143,12 @@ function readfile(file){
         a.click();
         URL.revokeObjectURL(a.href);
         */
-  /*
+  
     };
     read.readAsText(file.files[0])
 } 
 
-*/
+
  
  </script>
 	</body>
