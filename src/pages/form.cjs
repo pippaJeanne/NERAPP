@@ -40,7 +40,7 @@ function readfile(file){
 //console.log(txtdata)
 */
 
-import { load } from 'spacy';
+const spacy = require('spacy');
 
 (async function() {
     const nlp = load('xx_ent_wiki_sm');
