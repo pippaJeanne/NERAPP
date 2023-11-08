@@ -65,7 +65,7 @@ for(var org in orgs){txt = txt.replaceAll(orgs[org], `<orgName>${orgs[org]}</org
 
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
        const a = document.createElement('a');
-        const outfile = new Blob([text], { type: 'text/xml' });
+        const outfile = new Blob([txt], { type: 'text/xml' });
         //console.log(outfile);
         a.href = URL.createObjectURL(outfile);
         a.download = `ner_${file.files[0].name}`;
