@@ -33,23 +33,45 @@ function readfile(file){
             txtdata += txtcont + " ";
            
         }
-console.log(txtdata)
 
 var nlp = require('compromise');
-var doc = nlp(txtdata)
-console.log(doc.topics().people().text());
-    
+var doc = nlp(txtdata);
+const people =[];
+const places = [];
+const orgs =[];
+const ents = {};
+for (var person in doc.people().json()){
+  if (people.indexOf(doc.people().json()[person].text)==-1){
+  people.push(doc.people().json()[person].text)
+}}
+for (var place in doc.places().json()){
+  if (places.indexOf(doc.places().json()[place].text)==-1){
+  places.push(doc.places().json()[place].text)
+    }}
+for (var org in doc.organizations().json()){
+  if (orgs.indexOf(doc.organizations().json()[org].text)==-1){
+  orgs.push(doc.organizations().json()[org].text)
+}}
+//ents.person = people;
+//ents.place = places;
+//ents.org = orgs;
+var txt = text;
+for(var pers in people){
+ txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName/>`)};
+for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName/>`)};
+for(var org in orgs){txt = txt.replaceAll(orgs[org], `<orgName>${orgs[org]}</orgName/>`)};
+  
         
-/*
+
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
-      /*  const a = document.createElement('a');
+       const a = document.createElement('a');
         const outfile = new Blob([text], { type: 'text/xml' });
         //console.log(outfile);
         a.href = URL.createObjectURL(outfile);
         a.download = `ner_${file.files[0].name}`;
         a.click();
         URL.revokeObjectURL(a.href);
-        */ 
+        
     };
     read.readAsText(file.files[0])
 } 
