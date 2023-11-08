@@ -39,7 +39,7 @@ var doc = nlp(txtdata);
 const people =[];
 const places = [];
 const orgs =[];
-const ents = {};
+const dates = [];
 for (var person in doc.people().json()){
   if (people.indexOf(doc.people().json()[person].text)==-1){
   people.push(doc.people().json()[person].text)
@@ -52,9 +52,11 @@ for (var org in doc.organizations().json()){
   if (orgs.indexOf(doc.organizations().json()[org].text)==-1){
   orgs.push(doc.organizations().json()[org].text)
 }}
-//ents.person = people;
-//ents.place = places;
-//ents.org = orgs;
+for (var date in doc.dates().get()){
+    if (dates.indexOf(doc.dates().get()[date])==-1){
+    orgs.push(doc.dates().get()[date])
+  }}
+  console.log(dates)
 var txt = text;
 for(var pers in people){
  txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName/>`)};
