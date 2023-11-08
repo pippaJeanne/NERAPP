@@ -33,12 +33,12 @@ function readfile(file){
             txtdata += txtcont + " ";
            
         }
-//console.log(txtdata)
+console.log(txtdata)
 
 var nlp = require('compromise');
 var doc = nlp(txtdata)
 console.log(doc.topics().people().text());
-console.log(nlp.text("Tony Hawk did a kickflip").people());     
+    
         
 /*
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
