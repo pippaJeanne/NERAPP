@@ -61,10 +61,6 @@ for (var org in doc.organizations().json()){
   if (orgs.indexOf(doc.organizations().json()[org].text)==-1){
   orgs.push(doc.organizations().json()[org].text)
 }}
-for (var date of doc.dates().out('array')){
-    if (dates.indexOf(date)==-1){
-    dates.push(date)
-  }}
 
   if(checked){
     for (var date of doc.dates().out('array')){
@@ -99,9 +95,8 @@ for (var date of doc.dates().out('array')){
     for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName>`)};
     for(var org in orgs){txt = txt.replaceAll(orgs[org], `<orgName>${orgs[org]}</orgName>`)};
     for(var date in dates){
-      txt = txt.replaceAll(dates[date][0], `<date when="${dates[date][1]}">${dates[date][0]}</date>`)
-      };
-    
+        txt = txt.replaceAll(dates[date][0], `<date when="${dates[date][1]}">${dates[date][0]}</date>`)
+        };
 
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
        const a = document.createElement('a');
