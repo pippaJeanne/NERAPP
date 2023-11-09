@@ -1,6 +1,14 @@
 var txtdata = "";
 const btn = document.querySelector('button');
 btn.addEventListener('click', handleSubmit);
+const include = document.querySelector('input[name=dates]');
+include.addEventListener('change', check);
+var checked = false;
+function check(){
+  console.log(this.checked)
+  if (this.checked){checked=true}
+  else{checked=false}
+};
 
 function handleSubmit() {
      console.log(this)
@@ -35,6 +43,7 @@ function readfile(file){
         }
 
 var nlp = require('compromise');
+nlp.extend(require('compromise-dates'))
 var doc = nlp(txtdata);
 const people =[];
 const places = [];
@@ -52,18 +61,47 @@ for (var org in doc.organizations().json()){
   if (orgs.indexOf(doc.organizations().json()[org].text)==-1){
   orgs.push(doc.organizations().json()[org].text)
 }}
-for (var date in doc.dates().get()){
-    if (dates.indexOf(doc.dates().get()[date])==-1){
-    orgs.push(doc.dates().get()[date])
+for (var date of doc.dates().out('array')){
+    if (dates.indexOf(date)==-1){
+    dates.push(date)
   }}
-  console.log(dates)
-var txt = text;
-for(var pers in people){
- txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName/>`)};
-for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName/>`)};
-for(var org in orgs){txt = txt.replaceAll(orgs[org], `<orgName>${orgs[org]}</orgName/>`)};
-  
+
+  if(checked){
+    for (var date of doc.dates().out('array')){
+      if(dates.indexOf(date) == -1){
+    var i = doc.dates().out('array').indexOf(date)
+    var str;
+    if (doc.dates().get()[i].start !== undefined){
+      str = doc.dates().get()[i].start;
+    }   
+      var when = "";
+      let m;
+    const regex = /^\w*-\w*-[0-9]*/gm;
+     while ((m = regex.exec(str)) !== null) {
+        // This is necessary to avoid infinite loops with zero-width matches
+       if (m.index === regex.lastIndex) {
+            regex.lastIndex++;
+        }
         
+        // The result can be accessed through the `m`-variable.
+      m.forEach((match, groupIndex) => {
+          when = match;
+      });
+    }
+    dates.push([date,when])
+      }}
+      };
+    
+    //console.log(dates)
+    var txt = text;
+    for(var pers in people){
+     txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName>`)};
+    for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName>`)};
+    for(var org in orgs){txt = txt.replaceAll(orgs[org], `<orgName>${orgs[org]}</orgName>`)};
+    for(var date in dates){
+      txt = txt.replaceAll(dates[date][0], `<date when="${dates[date][1]}">${dates[date][0]}</date>`)
+      };
+    
 
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
        const a = document.createElement('a');

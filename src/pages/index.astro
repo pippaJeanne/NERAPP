@@ -19,7 +19,7 @@
         font-size: medium;
         margin-right:.5rem;
        }
-       p {color:rgb(244, 244, 250);}
+       p {margin:1rem 5rem;color:rgb(244, 244, 250);}
        button{
         font-size: 1rem;
         margin: 2rem;
@@ -37,7 +37,7 @@
        }
        div.container{
          background-color: rgb(244, 244, 250);
-        margin-top: 10%;
+        margin-top: 3rem;
         margin-left: auto;
             margin-right: auto;
             padding: 3rem;
@@ -71,9 +71,11 @@
 	</head>
 	<body>
 		<h1>Named Entity TEI tagger</h1>
-    <p>This is a simple web app for named entity recognition (NER) and tagging for TEI. It uses the <a href="https://github.com/spencermountain/compromise">Compromise.js</a> library for NLP (Natural Language Processing) in JavaScript. It provides recognition for basic entities such as Persons, Places and Organizations. Compromise.js is trained on a set of modern languages, so the app is able to recognize entities in several languages.</p>
+    <p>This is a simple web app for named entity recognition (NER) and tagging for TEI. It uses the <a href="https://github.com/spencermountain/compromise">Compromise.js</a> library for NLP (Natural Language Processing) in JavaScript. It provides recognition for basic entities such as Persons, Places and Organizations. The tagging for dates is not done by default since some projects do not need that many date tags and the algorithm may recognize even time expressions like "tomorrow" that may not be relevant for your project. An option to tell the program to include that tag is provided.</p>
 
-<p>This NER app is very simple to use. Just upload your XML document and click on the process button and find your output file in your downloads set folder.</p>
+    <p>Compromise.js is trained on a set of modern languages, so the app is able to recognize entities in several languages.</p>
+
+<p>This NER app is very simple to use. Just upload your XML document (ckeck the box if you need the date tags) and click on the process button to find your output file in your downloads set folder.</p>
 
 <p><strong><em>Note: </em></strong> <em>The app does a simple pre-tagging, merely to identify as many entities as the models allow in order to facilitate the NER encoding process (only the tag is included without attributes, ex: &lt;persName&gt;William&lt;/persName&gt;, and there may be tagging mistakes if the entity is not accurately recognized). Therefore, a cleaning process is necessary afterwards.</em></p>
     <div class="container">
@@ -82,92 +84,15 @@
           <input id="file" name="file" type="file" accept="text/xml"/>
         </div>
         <div>
-          <button>Process file</button>
+        <label for="incledDates">Include date entities</label>
+          <input id="includeDates" type="checkbox" name="dates"/>
+        </div>
+        <div>
+          <button id="process">Process file</button>
         </div>
     </div> 
- <!--<script is:inline src="https://unpkg.com/compromise@14.10.0"></script>
-	<script type="text/javascript">
-
-
-var txtdata = "";
-const btn = document.querySelector('button');
-btn.addEventListener('click', handleSubmit);
-
-function handleSubmit() {
-     console.log(this)
- const file = document.querySelector('input');
- console.log(file)
- readfile(file); 
- 
-} 
-
-function readfile(file){
-    
-    const read = new FileReader();
-    console.log(read)
-    read.onload = function result(ev){
-      var txtdata = "";
-        //console.log(ev);
-        //let output = document.createElement('div');
-        //output.setAttribute('class', "output");
-        
-        //output.appendChild(a);
-        //document.querySelector('.container div').appendChild(output);
-        const text = ev.target.result; 
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, "text/xml");
-        const select = xml.querySelectorAll('div2:not(div2[type="forematter"]) *');
-        const select1 = xml.querySelectorAll('div2 *');
-        const select2 = xml.querySelectorAll('body *');
-        
-        for (var n of select2){
-            var txtcont = n.textContent.toString()
-            
-            txtdata += txtcont + " "; 
-        }
-      
-var doc = nlp(txtdata);
-const people =[];
-const places = [];
-const orgs =[];
-const ents = {};
-for (var person in doc.people().json()){
-  if (people.indexOf(doc.people().json()[person].text)==-1){
-  people.push(doc.people().json()[person].text)
-}}
-for (var place in doc.places().json()){
-  if (places.indexOf(doc.places().json()[place].text)==-1){
-  places.push(doc.places().json()[place].text)
-    }}
-for (var org in doc.organizations().json()){
-  if (orgs.indexOf(doc.organizations().json()[org].text)==-1){
-  orgs.push(doc.organizations().json()[org].text)
-}}
-//ents.person = people;
-//ents.place = places;
-//ents.org = orgs;
-var txt = text;
-for(var pers in people){
- txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName/>`)};
-for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName/>`)};
-for(var org in orgs){txt = txt.replaceAll(orgs[org], `<orgName>${orgs[org]}</orgName/>`)};
-
-
-// based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
-      const a = document.createElement('a');
-        const outfile = new Blob([txt], { type: 'text/xml' });
-        //console.log(outfile);
-        a.href = URL.createObjectURL(outfile);
-        a.download = `ner_${file.files[0].name}`;
-        a.click();
-        URL.revokeObjectURL(a.href);
-        
-  
-    };
-    read.readAsText(file.files[0]) 
-} 
- 
- </script> -->
+<!-- <script is:inline src="https://unpkg.com/compromise@14.10.0"></script>-->
+ <!--<script src="https://unpkg.com/compromise-dates"></script>-->
  <script src="./form.cjs"></script>
 
 	</body>
