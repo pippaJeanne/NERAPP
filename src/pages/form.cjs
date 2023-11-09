@@ -54,9 +54,10 @@ for (var person in doc.people().json()){
   people.push(doc.people().json()[person].text)
 }}
 for (var place in doc.places().json()){
-  if (places.indexOf(doc.places().json()[place].text)==-1){
-  places.push(doc.places().json()[place].text)
-    }}
+    if (places.indexOf(doc.places().json()[place].text)==-1){ 
+   if (doc.places().json()[place].text !== "." && doc.places().json()[place].text !== "que"){
+    places.push(doc.places().json()[place].text)
+      }}}
 for (var org in doc.organizations().json()){
   if (orgs.indexOf(doc.organizations().json()[org].text)==-1){
   orgs.push(doc.organizations().json()[org].text)
