@@ -33,7 +33,7 @@ function readfile(file){
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, "text/xml");
         //const select = xml.querySelectorAll('div2:not(div2[type="forematter"]) *');
-        const select1 = xml.querySelectorAll('div2 *');
+        const select1 = xml.querySelectorAll('body *');
         
         for (var n of select1){
             var txtcont = n.textContent.toString();
