@@ -34,14 +34,13 @@ function readfile(file){
         const xml = parser.parseFromString(text, "text/xml");
         //const select = xml.querySelectorAll('div2:not(div2[type="forematter"]) *');
         const select1 = xml.querySelectorAll('body *');
-        
         for (var n of select1){
             var txtcont = n.textContent.toString();
             
             txtdata += txtcont + " ";
            
         }
-
+        
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
 var doc = nlp(txtdata);
@@ -89,7 +88,9 @@ for (var org in doc.organizations().json()){
       }}
       };
     
-    //console.log(dates)
+    console.log(people);
+    console.log(places);
+    console.log(orgs);
     var txt = text;
     for(var pers in people){
      txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName>`)};
