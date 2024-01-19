@@ -7,3 +7,10 @@ Compromise.js is trained on a set of modern languages, so the app is able to rec
 This NER app is very simple to use. Just upload your XML document (ckeck the box if you need the date tags) and click on the process button to find your output file in your downloads set folder. 
 
 **Note**: *The app does a simple pre-tagging, merely to identify as many entities as the models allow in order to facilitate the NER encoding process (only the tag is included without attributes, ex: ```<persName>William</persName>```, and there may be tagging mistakes if the entity is not accurately recognized). Therefore, a cleaning process is necessary afterwards.* 
+
+
+
+
+
+
+		

@@ -1,98 +1,29 @@
 ---
-
+const logo = "/frontpic.jpg"
 ---
+<style>
+body{background-color: black;}
+img{
+  width:99vw;
+  height:99vh;
+  /*margin: 7rem 0 1rem 37%;*/
+}
+a{text-decoration: none;}
+#text{
+position:relative;
+top: -2rem;
+font-size:0.5rem;
+color:aliceblue}
+</style>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Named Entity TEI tagger</title>
-		<style>
-        body{
-            margin: 2rem;
-            padding: 5rem;
-            background-color: rgba(6, 6, 243, 0.6);
-        }
-       label{
-        font-size: medium;
-        margin-right:.5rem;
-       }
-       p {margin:1rem 5rem;color:rgb(244, 244, 250);}
-       button{
-        font-size: 1rem;
-        margin: 2rem;
-        padding: .5rem;
-        background-color: rgba(6, 6, 243, 0.6);
-        border-style: initial;
-        box-shadow: 1px 2px rgba(6, 6, 243, 0.6);
-        border-radius: 10%;
-        color: white;
-       }       
+<figure>
+<a href="./en" id="logo">
+<img src={logo}/></a>
+<figcaption><a href="https://tei-c.org/" target="_blank"><span id="text">iStock.com/Aditya Mawardi</span></a></figcaption>
+</figure>
 
-       h1{
-        text-align: center;
-        color:rgb(244, 244, 250);
-       }
-       div.container{
-         background-color: rgb(244, 244, 250);
-        margin-top: 3rem;
-        margin-left: auto;
-            margin-right: auto;
-            padding: 3rem;
-        width: 80%;
-        height: auto;
-        border: 1px solid rgb(244, 244, 250);
-        box-shadow: 1px 2px 1px rgb(244, 244, 250);
-       }
-       div.container div{
-        display:flex;
-         flex-wrap: wrap;
-       
-       }
-       .output{
-         width:50%;
-       }
-
-       .output a{
-        margin-left:20%;
-        text-decoration: none;
-        font-size: 1rem;
-        padding: .5rem;
-        background-color: rgba(6, 6, 243, 0.6);
-        border-style: initial;
-        box-shadow: 1px 2px rgba(6, 6, 243, 0.6);
-        border-radius: 10%;
-        color: white;
-       }
-    </style>
- 
-	</head>
-	<body>
-		<h1>Named Entity TEI tagger</h1>
-    <p>This is a simple web app for named entity recognition (NER) and tagging for TEI. It uses the <a href="https://github.com/spencermountain/compromise">Compromise.js</a> library for NLP (Natural Language Processing) in JavaScript. It provides recognition for basic entities such as Persons, Places and Organizations. The tagging for dates is not done by default since some projects do not need that many date tags and the algorithm may recognize even time expressions like "tomorrow" that may not be relevant for your project. An option to tell the program to include that tag is provided.</p>
-
-    <p>Compromise.js is trained on a set of modern languages, so the app is able to recognize entities in several languages.</p>
-
-<p>This NER app is very simple to use. Just upload your XML document (check the box if you need the date tags) and click on the process button to find your output file in your downloads set folder.</p>
-
-<p><strong><em>Note: </em></strong> <em>The app does a simple pre-tagging, merely to identify as many entities as the models allow in order to facilitate the NER encoding process (only the tag is included without attributes, ex: &lt;persName&gt;William&lt;/persName&gt;, and there may be tagging mistakes if the entity is not accurately recognized). Therefore, a cleaning process is necessary afterwards.</em></p>
-    <div class="container">
-        <div>
-          <label for="file">Upload your XML-TEI file</label>
-          <input id="file" name="file" type="file" accept="text/xml"/>
-        </div>
-        <div>
-        <label for="incledDates">Include date entities</label>
-          <input id="includeDates" type="checkbox" name="dates"/>
-        </div>
-        <div>
-          <button id="process">Process file</button>
-        </div>
-    </div> 
-
- <script src="./form.cjs"></script>
-
-	</body>
-</html>
+<script>
+const link = document.querySelector('#logo');
+const myTimeout = setTimeout(click,3000);
+function click(){link.click()};
+</script>

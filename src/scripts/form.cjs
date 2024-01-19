@@ -1,5 +1,5 @@
 var txtdata = "";
-const btn = document.querySelector('button');
+const btn = document.querySelector('#process');
 btn.addEventListener('click', handleSubmit);
 const include = document.querySelector('input[name=dates]');
 include.addEventListener('change', check);
@@ -17,7 +17,7 @@ function handleSubmit() {
  readfile(file); 
  
 } 
-
+//defining readfile function
 function readfile(file){
     
     const read = new FileReader();
@@ -40,7 +40,7 @@ function readfile(file){
             txtdata += txtcont + " ";
            
         }
-        
+          
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
 var doc = nlp(txtdata);
@@ -92,6 +92,7 @@ for (var org in doc.organizations().json()){
     console.log(places);
     console.log(orgs);
     var txt = text;
+    
     for(var pers in people){
      txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName>`)};
     for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName>`)};

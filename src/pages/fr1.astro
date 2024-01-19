@@ -1,0 +1,52 @@
+---
+import "../styles/global.css"
+import LangBtn from "../components/langBtn.astro";
+---
+<html lang="fr" class="fr">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+    <title>Baliseur d'entités nommées pour le TEI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Inter:wght@200&display=swap" rel="stylesheet">
+ 
+	</head>
+	<body>
+
+  <div class="langBtn">
+  <LangBtn/>
+  </div>
+		<h1>Baliseur d'entités nommées pour le TEI</h1>
+    <p>Il s'agit d'une application Web simple pour la reconnaissance d'entités nommées (NER) et le balisage TEI. Elle utilise la bibliothèque <a href="https://github.com/spencermountain/compromise">Compromise.js</a> pour le TAL (traitement automatique du langage naturel) en JavaScript. Celle-ci permet de reconnaître des entités de base telles que des personnes, des lieux et des organisations.</p>
+
+    <p>Compromise.js est entraîné sur un ensemble de langues modernes. L'application est donc capable de reconnaître des entités dans plusieurs langues. Toutefois, le balisage de dates n'est pas inclus dans l'interface en français car les dates en français ne sont pas bien reconnues.</p>
+
+<p>Ce baliseur d'entités nommées est très simple à utiliser. Téléversez tout simplement votre document XML et cliquez sur le bouton de <em>traiter le fichier</em> pour trouver votre fichier de sortie dans votre dossier de téléchargements.</p>
+
+<p><strong><em>Note : </em></strong> <em>L'application effectue un simple pré-balisage pour identifier autant d'entités que le permettent les modèles afin de faciliter le processus d'encodage d'entités nommées. C'est-à-dire seulement la balise est rajoutée dans le fichier, sans les attributs, par exemple : &lt;persName&gt;William&lt;/persName&gt. Il est également possible de retrouver quelques erreurs de balisage si l'entité n'a pas été reconnue correctement. Un processus de nettoyage et enrichissement selon votre protocole éditorial pourrait donc être nécessaire par la suite.</em></p>
+    <div class="container">
+        <div>
+          <label for="file">Téléversez votre fichier XML-TEI</label>
+          <input id="file" name="file" type="file" accept="text/xml"/>
+        </div>
+       
+        <div>
+          <button id="process">Traiter le fichier</button>
+        </div>
+    </div> 
+
+    <p>This is a simple web app for named entity recognition (NER) and tagging for TEI. It uses the <a href="https://github.com/spencermountain/compromise">Compromise.js</a> library for NLP (Natural Language Processing) in JavaScript. It provides recognition for basic entities such as Persons, Places and Organizations. The tagging for dates is not done by default since some projects do not need that many date tags and the algorithm may recognize even time expressions like "tomorrow" that may not be relevant for your project. An option to tell the program to include that tag is provided.</p>
+
+    <p>Compromise.js is trained on a set of modern languages, so the app is able to recognize entities in several languages.</p>
+
+<p>This NER app is very simple to use. Just upload your XML document (check the box if you need the date tags) and click on the process button to find your output file in your downloads set folder.</p>
+
+<p><strong><em>Note: </em></strong> <em>The app does a simple pre-tagging, merely to identify as many entities as the models allow in order to facilitate the NER encoding process (only the tag is included without attributes, ex: &lt;persName&gt;William&lt;/persName&gt;, and there may be tagging mistakes if the entity is not accurately recognized). Therefore, the file might need to be revised and enriched afterwards according to your editorial protocol.</em></p>
+
+ <script src="./form.cjs"></script>
+
+	</body>
+</html>

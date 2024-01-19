@@ -1,0 +1,84 @@
+---
+const links = await Astro.glob<{
+  lang: string;
+}>("../pages/*.md");
+---
+<style>
+  button {
+    width:auto;
+    margin-left:90%;
+    margin-top:0.5rem;
+    margin-bottom:0.5rem;
+    padding:.3rem;
+    transition: all 0.2s ease-in-out;
+    background-color:rgba(238, 238, 244,.1);
+    box-shadow: 1px 2px rgba(222, 222, 228,.2);
+    color:rgb(244, 244, 250);
+  }
+#FR{
+    text-decoration:none;
+    color:rgb(244,244,250);
+}
+#EN{
+    text-decoration:none;
+    color:rgb(244,244,250);
+}
+  button:hover {
+    /* Make the button smaller (scale down) when hovered */
+    transform: scale(0.9);
+  }
+
+  button:active {
+    /** Return the button to its standard size when active */
+    transform: scale(1);
+  }
+
+  :global(.EN) #EN{
+    display: none;
+  }
+  :global(.EN) #FR{
+    display: block;
+  }
+  :global(.FR) #FR{
+    display: none;
+  }
+  :global(.FR) #EN{
+    display: block;
+  }
+  
+</style>
+<nav>
+<button aria-label="Language button" class="langBtn">
+{links.map((link) => (
+  <a href={link.url} id={link.frontmatter.lang}><strong>{link.frontmatter.lang}</strong></a>
+))
+}
+<!--  <a href="./en" id="EN"><strong>EN</strong></a>
+  <a href="./fr" id="FR"><strong>FR</strong></a>-->
+</button>
+</nav>
+
+<script>
+  /** Grab the toggle */
+  const toggle = document.querySelector(".langBtn");
+
+  /** Grab the document root element. In this case <html>  */
+  const rootEl = document.documentElement;
+  
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      let l = rootEl.getAttribute('lang');
+      if (l === 'EN' ) {
+      rootEl.classList.remove('EN');
+      //rootEl.setAttribute('lang', 'FR');
+      rootEl.classList.add('FR');
+     }else if (l === 'FR' ){
+       rootEl.classList.remove('FR');
+       //rootEl.setAttribute('lang','EN');
+       rootEl.classList.add('EN');
+     }
+     
+    });
+  }
+  
+</script>

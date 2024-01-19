@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+import type { MarkdownLayoutProps } from "astro";
+import LangBtn from "../components/langBtn.astro";
+type Props = MarkdownLayoutProps<{
+  // Define the expected frontmatter props here
+  title: string;
+  lang:string;
+  label: string;
+  dates: string;
+  btn: string;
+  code: string;
+}>;
+
+const {lang,title,label,dates, btn, code } = Astro.props.frontmatter; 
+//let idiom = "EN";
+---
+<html lang={lang} class={lang} data-idiom={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Inter:wght@200&display=swap" rel="stylesheet">
+		<meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    
+	</head>
+	<body>
+  <style>
+  :global(.FR) .no{display:none;}
+  </style>
+  <main>
+  <LangBtn/>
+  <h1>{title}</h1>
+  <slot />
+    <div class="container">
+        <div>
+          <label for="file">{label}</label>
+          <input id="file" name="file" type="file" accept="text/xml"/>
+        </div>
+        <div id="dates">
+        <label for="incledDates">{dates}</label>
+          <input id="includeDates" type="checkbox" name="dates"/>
+        </div>
+        <div>
+          <button id="process">{btn}</button>
+        </div>
+    </div> 
+    <span data-code={code}></span>
+    
+</main>
+<script>
+//Hiding Include dates section for French interface
+let noclass = document.querySelector("#dates");
+const root = document.documentElement;
+let check = root.getAttribute("lang");
+if(check==="FR"){
+noclass.classList.toggle("no");}
+
+//Getting right src value for script
+const frame = document.querySelector("[data-code]");
+let src = frame.dataset.code;
+const script = document.createElement("script");
+script.src = 'src/scripts/' + src;
+const main = document.querySelector('main');
+main.appendChild(script);
+</script>
+	</body>
+</html>
