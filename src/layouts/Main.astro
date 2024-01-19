@@ -50,7 +50,7 @@ const {lang,title,label,dates, btn, code } = Astro.props.frontmatter;
         </div>
     </div> 
     <span data-code={code}></span>
-    
+    <script src="../scripts/form.cjs"></script>
 </main>
 <script>
 //Hiding Include dates section for French interface
@@ -61,12 +61,12 @@ if(check==="FR"){
 noclass.classList.toggle("no");}
 
 //Getting right src value for script
-const frame = document.querySelector("[data-code]");
+/*const frame = document.querySelector("[data-code]");
 let src = frame.dataset.code;
 const script = document.createElement("script");
 script.src = './src/scripts/' + src;
 const main = document.querySelector('main');
-main.appendChild(script);
+main.appendChild(script);*/
 </script>
 	</body>
 </html>
