@@ -1,4 +1,4 @@
-## Named Entity TEI tagger
+## [Named Entity TEI tagger](https://extraordinary-heliotrope-616c3d.netlify.app)
 
 This is a simple web app for named entity recognition (NER) and tagging for TEI. It uses the [Compromise.js](https://github.com/spencermountain/compromise) library for NLP (Natural Language Processing) in JavaScript. It provides recognition for basic entities such as Persons, Places and Organizations. The tagging for dates is not done by default since some projects do not need that many date tags and the algorithm may recognize even time expressions like "tomorrow" that may not be relevant for your project. An option to tell the program to include that tag is provided.
 
