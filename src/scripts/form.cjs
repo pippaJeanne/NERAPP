@@ -61,6 +61,9 @@ for (var org in doc.organizations().json()){
   if (orgs.indexOf(doc.organizations().json()[org].text)==-1){
   orgs.push(doc.organizations().json()[org].text)
 }}
+people = people.filter(v => v !== "");
+places =places.filter(v => v !== "");
+orgs = orgs.filter(v => v !== "");
 
   if(checked){
     for (var date of doc.dates().out('array')){
