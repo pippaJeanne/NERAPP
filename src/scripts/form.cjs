@@ -44,10 +44,10 @@ function readfile(file){
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
 var doc = nlp(txtdata);
-const people =[];
-const places = [];
-const orgs =[];
-const dates = [];
+let people =[];
+let places = [];
+let orgs =[];
+let dates = [];
 for (var person in doc.people().json()){
   if (people.indexOf(doc.people().json()[person].text)==-1){
   people.push(doc.people().json()[person].text)
