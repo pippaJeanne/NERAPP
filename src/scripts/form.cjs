@@ -100,7 +100,7 @@ for (var org in doc.organizations().json()){
     for(var date in dates){
         txt = txt.replaceAll(dates[date][0], `<date when="${dates[date][1]}">${dates[date][0]}</date>`)
         };
-
+   console.log(txt);
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
        const a = document.createElement('a');
         const outfile = new Blob([txt], { type: 'text/xml' });
