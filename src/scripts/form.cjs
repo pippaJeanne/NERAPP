@@ -92,7 +92,7 @@ for (var org in doc.organizations().json()){
     console.log(places);
     console.log(orgs);
     var txt = text;
-    
+    console.log(txt);
     for(var pers in people){
      txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName>`)};
     for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName>`)};
