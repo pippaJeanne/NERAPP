@@ -21,6 +21,9 @@ function handleSubmit() {
  readfile(file); 
  
 } 
+console.log(people);
+console.log(places);
+console.log(orgs);
 //defining readfile function
 function readfile(file){
     
@@ -47,9 +50,6 @@ function readfile(file){
           
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
-console.log(people);
-    console.log(places);
-    console.log(orgs);
 var doc = nlp(txtdata);
 
 for (var person in doc.people().json()){
@@ -121,9 +121,9 @@ dates = dates.filter(v => v !== "");
         
     };
     read.readAsText(file.files[0]);
-    people.length= 0;
-places.length= 0;
-orgs.length= 0;
-dates.length= 0;
 } 
+people =[];
+places = [];
+orgs =[];
+dates = [];
 
