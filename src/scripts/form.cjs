@@ -63,7 +63,7 @@ for (var org in doc.organizations().json()){
   orgs.push(doc.organizations().json()[org].text)
 }}
 people = people.filter(v => v !== "");
-places =places.filter(v => v !== "" || v !== "ont",v !== "va", v !== "qu'il", v !== "qu'elle", v !== "qu'ils", v !== "qu'elles", v !== "qu'entre" );
+places =places.filter(v => v !== "" || v !== "ont" || v !== "va"|| v !== "qu'il" || v !== "qu'elle" || v !== "qu'ils"|| v !== "qu'elles"|| v !== "qu'entre" );
 orgs = orgs.filter(v => v !== "");
 dates = dates.filter(v => v !== "");
 
