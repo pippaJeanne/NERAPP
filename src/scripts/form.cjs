@@ -3,6 +3,7 @@ let people =[];
 let places = [];
 let orgs =[];
 let dates = [];
+console.log(people, places, orgs)
 const btn = document.querySelector('#process');
 btn.addEventListener('click', handleSubmit);
 const include = document.querySelector('input[name=dates]');
@@ -21,12 +22,10 @@ function handleSubmit() {
  readfile(file); 
  
 } 
-console.log(people);
-console.log(places);
-console.log(orgs);
+
 //defining readfile function
 function readfile(file){
-    
+ 
     const read = new FileReader();
     console.log(read)
     read.onload = function result(ev){
@@ -51,7 +50,10 @@ function readfile(file){
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
 var doc = nlp(txtdata);
-
+people =[];
+places = [];
+orgs =[];
+dates = [];
 for (var person in doc.people().json()){
   if (people.indexOf(doc.people().json()[person].text)==-1){
   people.push(doc.people().json()[person].text)
@@ -67,7 +69,7 @@ for (var org in doc.organizations().json()){
 }}
 people = people.filter(v => v !== "");
 places =places.filter(v => v !== "");
-//places = places.filter(v => v !== v.test(/qu'[\w]+)/));
+places = places.filter(v => !v.test(/qu'[\w]+)/));
 orgs = orgs.filter(v => v !== "");
 dates = dates.filter(v => v !== "");
 
@@ -122,8 +124,5 @@ dates = dates.filter(v => v !== "");
     };
     read.readAsText(file.files[0]);
 } 
-people =[];
-places = [];
-orgs =[];
-dates = [];
+
 
