@@ -69,7 +69,6 @@ for (var org in doc.organizations().json()){
 }}
 people = people.filter(v => v !== "");
 places =places.filter(v => v !== "");
-places = places.filter(v => !v.test(/qu'[\w]+)/));
 orgs = orgs.filter(v => v !== "");
 dates = dates.filter(v => v !== "");
 
