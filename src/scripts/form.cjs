@@ -47,10 +47,6 @@ function readfile(file){
           
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
-people  = [];
-places  = [];
-orgs  = [];
-dates  = [];
 console.log(people);
     console.log(places);
     console.log(orgs);
@@ -125,5 +121,9 @@ dates = dates.filter(v => v !== "");
         
     };
     read.readAsText(file.files[0]);
+    people.length= 0;
+places.length= 0;
+orgs.length= 0;
+dates.length= 0;
 } 
 
