@@ -1,4 +1,8 @@
 var txtdata = "";
+let people =[];
+let places = [];
+let orgs =[];
+let dates = [];
 const btn = document.querySelector('#process');
 btn.addEventListener('click', handleSubmit);
 const include = document.querySelector('input[name=dates]');
@@ -44,10 +48,7 @@ function readfile(file){
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
 var doc = nlp(txtdata);
-let people =[];
-let places = [];
-let orgs =[];
-let dates = [];
+
 for (var person in doc.people().json()){
   if (people.indexOf(doc.people().json()[person].text)==-1){
   people.push(doc.people().json()[person].text)
@@ -64,6 +65,7 @@ for (var org in doc.organizations().json()){
 people = people.filter(v => v !== "");
 places =places.filter(v => v !== "");
 orgs = orgs.filter(v => v !== "");
+dates = dates.filter(v => v !== "");
 
   if(checked){
     for (var date of doc.dates().out('array')){
@@ -95,7 +97,7 @@ orgs = orgs.filter(v => v !== "");
     console.log(places);
     console.log(orgs);
     var txt = text;
-    console.log(txt);
+    //console.log(txt);
     for(var pers in people){
      txt = txt.replaceAll(people[pers], `<persName>${people[pers]}</persName>`)};
     for(var pl in places){txt = txt.replaceAll(places[pl], `<placeName>${places[pl]}</placeName>`)};
@@ -103,7 +105,7 @@ orgs = orgs.filter(v => v !== "");
     for(var date in dates){
         txt = txt.replaceAll(dates[date][0], `<date when="${dates[date][1]}">${dates[date][0]}</date>`)
         };
-   console.log(txt);
+   //console.log(txt);
 // based on: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
        const a = document.createElement('a');
         const outfile = new Blob([txt], { type: 'text/xml' });
