@@ -40,13 +40,14 @@ function readfile(file){
         const xml = parser.parseFromString(text, "text/xml");
         //const select = xml.querySelectorAll('div2:not(div2[type="forematter"]) *');
         const select1 = xml.querySelectorAll('body *');
+        console.log(txtdata)
         for (var n of select1){
             var txtcont = n.textContent.toString();
             
             txtdata += txtcont + " ";
            
         }
-          
+  console.log(txtdata)        
 var nlp = require('compromise');
 nlp.extend(require('compromise-dates'))
 var doc = nlp(txtdata);
